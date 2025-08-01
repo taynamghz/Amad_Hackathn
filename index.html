@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>على مدارك - لوحة التحكم المالية</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <img src="1.png" alt="على مدارك" class="logo-img">
+                <h1>على مدارك</h1>
+            </div>
+            <div class="header-actions">
+                <div class="date-display">
+                    <i class="fas fa-calendar"></i>
+                    <span id="current-date"></span>
+                </div>
+                <div class="user-profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span>أحمد محمد</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Dashboard -->
+    <main class="dashboard">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>مرحباً بك في لوحة التحكم المالية</h2>
+                    <p>تابع إنفاقك، وفّر أكثر، وحسّن عاداتك المالية</p>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-wallet"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>إجمالي الإنفاق</h3>
+                            <p class="stat-value">12,450 ريال</p>
+                            <span class="stat-period">هذا الشهر</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-piggy-bank"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>المدخرات</h3>
+                            <p class="stat-value">3,200 ريال</p>
+                            <span class="stat-period">هذا الشهر</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>نسبة التوفير</h3>
+                            <p class="stat-value">25.7%</p>
+                            <span class="stat-period">من الدخل</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Spending Analysis -->
+            <section class="dashboard-card spending-analysis">
+                <div class="card-header">
+                    <h3><i class="fas fa-chart-pie"></i> تحليل الإنفاق حسب الفئات</h3>
+                </div>
+                <div class="card-content">
+                    <div class="chart-container">
+                        <canvas id="spendingChart"></canvas>
+                    </div>
+                    <div class="category-list">
+                        <div class="category-item">
+                            <div class="category-color" style="background-color: #c36b4e;"></div>
+                            <span>الطعام والمطاعم</span>
+                            <span class="amount">4,200 ريال</span>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-color" style="background-color: #8980bc;"></div>
+                            <span>المواصلات</span>
+                            <span class="amount">2,100 ريال</span>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-color" style="background-color: #042341;"></div>
+                            <span>التسوق</span>
+                            <span class="amount">1,800 ريال</span>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-color" style="background-color: #f3f3f3;"></div>
+                            <span>الترفيه</span>
+                            <span class="amount">1,500 ريال</span>
+                        </div>
+                        <div class="category-item">
+                            <div class="category-color" style="background-color: #6b4ec3;"></div>
+                            <span>الفواتير</span>
+                            <span class="amount">2,850 ريال</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Budget & Savings -->
+            <section class="dashboard-card budget-savings">
+                <div class="card-header">
+                    <h3><i class="fas fa-bullseye"></i> الميزانية والمدخرات</h3>
+                </div>
+                <div class="card-content">
+                    <div class="budget-progress">
+                        <div class="budget-item">
+                            <div class="budget-header">
+                                <span>ميزانية الطعام</span>
+                                <span>4,200 / 5,000 ريال</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 84%; background-color: #c36b4e;"></div>
+                            </div>
+                            <span class="budget-status good">84% - جيد</span>
+                        </div>
+                        <div class="budget-item">
+                            <div class="budget-header">
+                                <span>ميزانية المواصلات</span>
+                                <span>2,100 / 2,500 ريال</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 84%; background-color: #8980bc;"></div>
+                            </div>
+                            <span class="budget-status good">84% - جيد</span>
+                        </div>
+                        <div class="budget-item">
+                            <div class="budget-header">
+                                <span>ميزانية الترفيه</span>
+                                <span>1,500 / 1,200 ريال</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 125%; background-color: #e74c3c;"></div>
+                            </div>
+                            <span class="budget-status bad">125% - تجاوز الميزانية</span>
+                        </div>
+                    </div>
+                    <div class="savings-goal">
+                        <h4>هدف التوفير الشهري</h4>
+                        <div class="savings-progress">
+                            <div class="savings-circle">
+                                <span class="savings-percentage">64%</span>
+                                <span class="savings-amount">3,200 / 5,000 ريال</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Behavior Analysis -->
+            <section class="dashboard-card behavior-analysis">
+                <div class="card-header">
+                    <h3><i class="fas fa-brain"></i> تحليل السلوك المالي</h3>
+                </div>
+                <div class="card-content">
+                    <div class="behavior-score">
+                        <div class="score-circle">
+                            <span class="score-number">78</span>
+                            <span class="score-label">نقاط</span>
+                        </div>
+                        <div class="score-description">
+                            <h4>تقييم السلوك المالي</h4>
+                            <p>أداؤك جيد هذا الشهر! تحافظ على ميزانيتك في معظم الفئات</p>
+                        </div>
+                    </div>
+                    <div class="behavior-insights">
+                        <div class="insight-item positive">
+                            <i class="fas fa-check-circle"></i>
+                            <span>توفير جيد في فئة الطعام</span>
+                        </div>
+                        <div class="insight-item positive">
+                            <i class="fas fa-check-circle"></i>
+                            <span>دفع جميع الفواتير في الوقت المحدد</span>
+                        </div>
+                        <div class="insight-item negative">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>تجاوز ميزانية الترفيه بنسبة 25%</span>
+                        </div>
+                        <div class="insight-item positive">
+                            <i class="fas fa-check-circle"></i>
+                            <span>زيادة في المدخرات مقارنة بالشهر السابق</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Bills & Reminders -->
+            <section class="dashboard-card bills-reminders">
+                <div class="card-header">
+                    <h3><i class="fas fa-bell"></i> الفواتير والتذكيرات</h3>
+                </div>
+                <div class="card-content">
+                    <div class="bills-list">
+                        <div class="bill-item paid">
+                            <div class="bill-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="bill-info">
+                                <h4>فاتورة الكهرباء</h4>
+                                <span class="bill-date">تم الدفع - 15/12/2024</span>
+                            </div>
+                            <div class="bill-amount">450 ريال</div>
+                        </div>
+                        <div class="bill-item paid">
+                            <div class="bill-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <div class="bill-info">
+                                <h4>فاتورة المياه</h4>
+                                <span class="bill-date">تم الدفع - 12/12/2024</span>
+                            </div>
+                            <div class="bill-amount">120 ريال</div>
+                        </div>
+                        <div class="bill-item upcoming">
+                            <div class="bill-icon">
+                                <i class="fas fa-wifi"></i>
+                            </div>
+                            <div class="bill-info">
+                                <h4>فاتورة الإنترنت</h4>
+                                <span class="bill-date">مستحقة - 25/12/2024</span>
+                            </div>
+                            <div class="bill-amount">200 ريال</div>
+                        </div>
+                        <div class="bill-item overdue">
+                            <div class="bill-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="bill-info">
+                                <h4>فاتورة الهاتف</h4>
+                                <span class="bill-date">متأخرة - 10/12/2024</span>
+                            </div>
+                            <div class="bill-amount">150 ريال</div>
+                        </div>
+                    </div>
+                    <div class="reminders-summary">
+                        <div class="reminder-item">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span>فاتورة متأخرة واحدة</span>
+                        </div>
+                        <div class="reminder-item">
+                            <i class="fas fa-clock"></i>
+                            <span>فاتورة مستحقة خلال 3 أيام</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Monthly Trends -->
+            <section class="dashboard-card monthly-trends">
+                <div class="card-header">
+                    <h3><i class="fas fa-chart-line"></i> الاتجاهات الشهرية</h3>
+                </div>
+                <div class="card-content">
+                    <div class="trends-chart">
+                        <canvas id="trendsChart"></canvas>
+                    </div>
+                    <div class="trends-summary">
+                        <div class="trend-item">
+                            <span class="trend-label">متوسط الإنفاق اليومي</span>
+                            <span class="trend-value">415 ريال</span>
+                        </div>
+                        <div class="trend-item">
+                            <span class="trend-label">أعلى يوم إنفاق</span>
+                            <span class="trend-value">850 ريال</span>
+                        </div>
+                        <div class="trend-item">
+                            <span class="trend-label">أيام التوفير</span>
+                            <span class="trend-value">18 يوم</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="dashboard-card quick-actions">
+                <div class="card-header">
+                    <h3><i class="fas fa-bolt"></i> إجراءات سريعة</h3>
+                </div>
+                <div class="card-content">
+                    <div class="actions-grid">
+                        <button class="action-btn">
+                            <i class="fas fa-plus"></i>
+                            <span>إضافة معاملة</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-edit"></i>
+                            <span>تعديل الميزانية</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-download"></i>
+                            <span>تحميل التقرير</span>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-cog"></i>
+                            <span>الإعدادات</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
