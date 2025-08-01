@@ -23,7 +23,7 @@
                 </div>
                 <div class="user-profile">
                     <i class="fas fa-user-circle"></i>
-                    <span>أحمد محمد</span>
+                    <span>تينم الزامل</span>
                 </div>
             </div>
         </div>
@@ -303,9 +303,9 @@
                             <i class="fas fa-edit"></i>
                             <span>تعديل الميزانية</span>
                         </button>
-                        <button class="action-btn">
-                            <i class="fas fa-download"></i>
-                            <span>تحميل التقرير</span>
+                        <button class="action-btn" onclick="downloadAsPDF()">
+                            <i class="fas fa-file-pdf"></i>
+                            <span>تحميل PDF</span>
                         </button>
                         <button class="action-btn">
                             <i class="fas fa-cog"></i>
@@ -318,6 +318,7 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html> 

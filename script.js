@@ -37,7 +37,7 @@ function handleWindowResize() {
     }, 100);
 }
 
-// Set current date in Arabic
+// Set current date in Georgian calendar
 function setCurrentDate() {
     const dateElement = document.getElementById('current-date');
     const now = new Date();
@@ -49,9 +49,9 @@ function setCurrentDate() {
         day: 'numeric'
     };
     
-    // Convert to Arabic locale
-    const arabicDate = now.toLocaleDateString('ar-SA', options);
-    dateElement.textContent = arabicDate;
+    // Convert to Georgian locale (en-US for Georgian calendar)
+    const georgianDate = now.toLocaleDateString('en-US', options);
+    dateElement.textContent = georgianDate;
 }
 
 // Initialize spending pie chart
@@ -252,7 +252,7 @@ function handleQuickAction(action) {
     const actions = {
         'إضافة معاملة': () => showNotification('سيتم فتح نموذج إضافة معاملة جديدة', 'info'),
         'تعديل الميزانية': () => showNotification('سيتم فتح صفحة تعديل الميزانية', 'info'),
-        'تحميل التقرير': () => showNotification('جاري تحضير التقرير...', 'success'),
+        'تحميل PDF': () => downloadAsPDF(),
         'الإعدادات': () => showNotification('سيتم فتح صفحة الإعدادات', 'info')
     };
     
@@ -461,13 +461,72 @@ function exportDashboardData() {
     showNotification('تم تصدير بيانات لوحة التحكم بنجاح', 'success');
 }
 
+// Download dashboard as PDF
+function downloadAsPDF() {
+    showNotification('جاري تحضير PDF...', 'info');
+    
+    // Create a copy of the dashboard for PDF
+    const dashboard = document.querySelector('.dashboard');
+    const pdfContainer = dashboard.cloneNode(true);
+    
+    // Remove interactive elements for PDF
+    const actionButtons = pdfContainer.querySelectorAll('.action-btn');
+    actionButtons.forEach(btn => btn.remove());
+    
+    // Hide charts temporarily and replace with static images
+    const charts = pdfContainer.querySelectorAll('canvas');
+    charts.forEach(chart => {
+        const chartContainer = chart.parentElement;
+        const staticDiv = document.createElement('div');
+        staticDiv.style.cssText = `
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-family: 'Cairo', sans-serif;
+        `;
+        staticDiv.innerHTML = '<div>📊 الرسم البياني</div>';
+        chartContainer.appendChild(staticDiv);
+        chart.style.display = 'none';
+    });
+    
+    // Configure PDF options
+    const opt = {
+        margin: [10, 10, 10, 10],
+        filename: 'ala-madark-dashboard.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { 
+            scale: 2,
+            useCORS: true,
+            allowTaint: true
+        },
+        jsPDF: { 
+            unit: 'mm', 
+            format: 'a4', 
+            orientation: 'portrait' 
+        }
+    };
+    
+    // Generate PDF
+    html2pdf().set(opt).from(pdfContainer).save().then(() => {
+        showNotification('تم تحميل PDF بنجاح!', 'success');
+    }).catch(err => {
+        console.error('PDF generation error:', err);
+        showNotification('حدث خطأ في تحميل PDF', 'error');
+    });
+}
+
 // Add export functionality to download button
 document.addEventListener('DOMContentLoaded', function() {
-    const downloadBtn = document.querySelector('.action-btn:has(.fa-download)');
+    const downloadBtn = document.querySelector('.action-btn:has(.fa-file-pdf)');
     if (downloadBtn) {
         downloadBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            exportDashboardData();
+            downloadAsPDF();
         });
     }
 }); 
